@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Unity;
+using WpfAppTest.Services;
 using WpfAppTest.ViewModels;
 
 namespace WpfAppTest
@@ -17,7 +19,9 @@ namespace WpfAppTest
         private void OnStartup(object sender, StartupEventArgs e)
         {
             var mainWindow = new MainWindow();
-            mainWindow.DataContext = new MainViewModel();
+            var container = new UnityContainer();
+            container.RegisterType<IDatabase, InMemoryDatabase>();
+            mainWindow.DataContext = container.Resolve<MainViewModel>();
             mainWindow.ShowDialog();
         }
     }

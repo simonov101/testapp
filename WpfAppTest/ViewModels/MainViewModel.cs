@@ -8,10 +8,10 @@ namespace WpfAppTest.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
-        public MainViewModel()
+        public MainViewModel(DetailsViewModel detailsViewModel, ResultSetViewModel resultSetViewModel)
         {
-            detailsViewModel = new DetailsViewModel();
-            resultSetViewModel = new ResultSetViewModel();
+            this.detailsViewModel = detailsViewModel;
+            this.resultSetViewModel = resultSetViewModel;
         }
 
         public DetailsViewModel detailsViewModel { get; }
