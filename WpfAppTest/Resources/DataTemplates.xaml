@@ -1,0 +1,19 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:WpfAppTest.Resources"
+                     xmlns:viewModels="clr-namespace:WpfAppTest.ViewModels"
+                    xmlns:views="clr-namespace:WpfAppTest.Views">
+
+    <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
+        <views:MainView/>
+    </DataTemplate>
+
+
+    <DataTemplate DataType="{x:Type viewModels:ResultSetViewModel}">
+        <views:ResultSetView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModels:DetailsViewModel}">
+        <views:DetailsView/>
+    </DataTemplate>
+</ResourceDictionary>
