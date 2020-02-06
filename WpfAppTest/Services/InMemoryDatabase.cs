@@ -42,10 +42,12 @@ namespace WpfAppTest.Services
             return CardholderTable;
         }
 
-        //public void update(Cardholder cardholder)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void Update(Cardholder cardholder)
+        {
+            Cardholder cardholderToUpdate = CardholderTable.Where(c => c.Firstname == cardholder.Firstname).FirstOrDefault();
+            cardholderToUpdate = cardholder;
+        }
+        
     }
 
    

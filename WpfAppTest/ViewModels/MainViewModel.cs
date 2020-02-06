@@ -12,8 +12,8 @@ namespace WpfAppTest.ViewModels
     {
         public MainViewModel(DetailsViewModel detailsViewModel, ResultSetViewModel resultSetViewModel)
         {
-            Contract.Requires<ArgumentNullException>(detailsViewModel != null);
-            Contract.Requires<ArgumentNullException>(resultSetViewModel != null);
+            //Contract.Requires<ArgumentNullException>(detailsViewModel != null);
+            //Contract.Requires<ArgumentNullException>(resultSetViewModel != null);
             //Contract.Ensures(this.detailsViewModel == detailsViewModel);
             this.detailsViewModel = detailsViewModel;
             this.resultSetViewModel = resultSetViewModel;

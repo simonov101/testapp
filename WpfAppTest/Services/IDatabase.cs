@@ -15,6 +15,6 @@ namespace WpfAppTest.Services
         void AddCardHolder(Cardholder cardholder);
         void DeleteCardHolder(Cardholder cardholder);
 
-        //void update(Cardholder cardholder);
+        void Update(Cardholder cardholder);
     }
 }

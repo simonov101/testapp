@@ -13,7 +13,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
         <Button Grid.Row="0" Command="{Binding SearchCommand}" VerticalAlignment="Top">Search</Button>
-        <ListView ItemsSource="{Binding Cardholders}" Grid.Row="1" SelectedItem="{Binding SelectedCardholder}">
+        <ListView ItemsSource="{Binding Cardholders, Mode=TwoWay}" Grid.Row="1" SelectedItem="{Binding SelectedCardholder}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <WrapPanel>
@@ -24,11 +24,6 @@
                     </WrapPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
-            <!--<i:Interaction.Triggers>
-                <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding SelectCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>-->
         </ListView>
     </Grid>
 </UserControl>

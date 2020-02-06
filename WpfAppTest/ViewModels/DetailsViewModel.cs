@@ -18,23 +18,23 @@ namespace WpfAppTest.ViewModels
         private InMemoryDatabase inMemoryDatabase;
         public ICommand AddCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
-        public ICommand UpdtaeCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
         public DetailsViewModel()
         {
             inMemoryDatabase = new InMemoryDatabase();
             AddCommand = new DelegateCommand(Add, CanAdd);
-            UpdtaeCommand = new DelegateCommand(Update, CanUpdate);
+            SaveCommand = new DelegateCommand(Save, CanSave);
             DeleteCommand = new DelegateCommand(Delete, CanDelete);
         }
 
-        private bool CanUpdate(object obj)
+        private bool CanSave(object obj)
         {
-            throw new NotImplementedException();
+            return true;
         }
 
-        private void Update(object obj)
+        private void Save(object obj)
         {
-            throw new NotImplementedException();
+            inMemoryDatabase.Update(Cardholder);
         }
 
         private bool CanDelete(object parameter)

@@ -27,8 +27,6 @@
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=Cardholder.Lastname}"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=Cardholder.Birthday}"></TextBox>
         <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Path=Cardholder.Company}"></TextBox>
-        <Button Grid.Row="4" Grid.Column="0" Content="Add" Command="{Binding AddCommand}"></Button>
-        <Button Grid.Row="4" Grid.Column="1" Content="Delete" Command="{Binding DeleteCommand}"></Button>
-        <Button Grid.Row="4" Grid.Column="2" Content="Update" Command="{Binding UpdtaeCommand}"></Button>
+        <Button Grid.Row="4"  Content="Save" Command="{Binding SaveCommand}"></Button>
     </Grid>
 </UserControl>
