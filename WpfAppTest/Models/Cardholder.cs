@@ -15,10 +15,13 @@ namespace WpfAppTest.Models
         public DateTime Birthday { get; set; }
         public string Company { get; set; }
 
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.Firstname == "Mohamed");
-        }
+        //[ContractInvariantMethod]
+        //private void ValidateInvariants()
+        //{
+        //    Contract.Invariant(Firstname == default(string));
+        //    Contract.Invariant(Lastname == default(string));
+        //    Contract.Invariant(Birthday == default(DateTime) );
+        //    Contract.Invariant(Company == default(string));
+        //}
     }
 }

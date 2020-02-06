@@ -25,7 +25,6 @@ namespace WpfAppTest.ViewModels
             AddCommand = new DelegateCommand(Add, CanAdd);
             UpdtaeCommand = new DelegateCommand(Update, CanUpdate);
             DeleteCommand = new DelegateCommand(Delete, CanDelete);
-            Messenger.Default.Register<Cardholder>(this, OnMessageReceived);
         }
 
         private bool CanUpdate(object obj)
@@ -58,12 +57,6 @@ namespace WpfAppTest.ViewModels
             inMemoryDatabase.AddCardHolder(Cardholder);
         }
 
-        private void OnMessageReceived(Cardholder card)
-        {
-            _cardholder = card;
-            NotifyOfPropertyChange(() => Cardholder);
-        }
-
         public Cardholder Cardholder
         {
             get { return _cardholder; }
@@ -73,5 +66,7 @@ namespace WpfAppTest.ViewModels
                 NotifyOfPropertyChange(() => Cardholder);
             }
         }
+
+
     }
 }

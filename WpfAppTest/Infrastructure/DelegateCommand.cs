@@ -15,12 +15,10 @@ namespace WpfAppTest.Infrastructure
         public DelegateCommand(Action<object> execute, Predicate<object> canExecute)
         {
             _execute = execute;
-            //_canExec
         }
 
         public bool CanExecute(object parameter)
         {
-            //return _canExecute(parameter);
             return true;
         }
 

@@ -8,7 +8,7 @@ using WpfAppTest.Models;
 
 namespace WpfAppTest.Services
 {
-    interface IDatabase
+    public interface IDatabase
     {
         ObservableCollection<Cardholder> CardholderTable { get; set; }
         ObservableCollection<Cardholder> GetCardholders();

@@ -195,5 +195,5 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="Tools\CodeContracts\Build\CodeContracts.MSBuild.targets" Condition="Exists('Tools\CodeContracts\Build\CodeContracts.MSBuild.targets')" />
+  <Import Project="CodeContracts\Build\CodeContracts.MSBuild.targets" Condition="Exists('CodeContracts\Build\CodeContracts.MSBuild.targets')" />
 </Project>

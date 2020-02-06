@@ -15,28 +15,19 @@ namespace WpfAppTest.ViewModels
 {
     public class ResultSetViewModel : Screen
     {
-        InMemoryDatabase inMemoryDatabase;
+        IDatabase inMemoryDatabase;
         private ObservableCollection<Cardholder> _cardholders;
-        private Cardholder selectedCard;
-        public ResultSetViewModel()
+        private Cardholder selectedCardholder;
+        public ResultSetViewModel(IDatabase database)
         {
-            inMemoryDatabase = new InMemoryDatabase();
+            inMemoryDatabase = database;
             SearchCommand = new DelegateCommand(OnSearch, CanSearch);
-            SelectCommand = new DelegateCommand(OnSelect, CanSelect);
         }
+        public delegate void ParameterChange(Cardholder parameter);
 
-        private bool CanSelect(object parameter)
-        {
-            return true;
-        }
-
-        private void OnSelect(object parameter)
-        {
-            Messenger.Default.Send<Cardholder>(SelectedCard);
-        }
+        public ParameterChange OnParameterChange { get; set; }
 
         public ICommand SearchCommand { get; }
-        public ICommand SelectCommand { get; }
 
         private void OnSearch(object parameter)
         {
@@ -48,12 +39,18 @@ namespace WpfAppTest.ViewModels
         {
             return true;
         }
-        public Cardholder SelectedCard
+        public Cardholder SelectedCardholder
         {
-            get { return selectedCard; }
+            get
+            {
+                return selectedCardholder;                
+            }
             set
             {
-                selectedCard = value;
+                //Contract.Requires<ArgumentException>(Cardholders)
+                selectedCardholder = value;
+                NotifyOfPropertyChange(() => SelectedCardholder);
+                OnParameterChange?.Invoke(SelectedCardholder);
             }
         }
         public ObservableCollection<Cardholder> Cardholders
