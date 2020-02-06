@@ -10,14 +10,15 @@ namespace WpfAppTest.ViewModels
 {
     class MainViewModel : BaseViewModel
     {
-        public MainViewModel(DetailsViewModel detailsViewModel, ResultSetViewModel resultSetViewModel)
+        public MainViewModel()
         {
+            
+            //Contract.Ensures(this.detailsViewModel == detailsViewModel);
+            detailsViewModel = new DetailsViewModel();
+            resultSetViewModel = new ResultSetViewModel();
             //Contract.Requires<ArgumentNullException>(detailsViewModel != null);
             //Contract.Requires<ArgumentNullException>(resultSetViewModel != null);
-            //Contract.Ensures(this.detailsViewModel == detailsViewModel);
-            this.detailsViewModel = detailsViewModel;
-            this.resultSetViewModel = resultSetViewModel;
-            this.resultSetViewModel.OnParameterChange += detailsViewModel_OnParameterChange;
+            resultSetViewModel.SelectedCardholderChanged += OnSelectedCardholderChanged;
         }
 
         public DetailsViewModel detailsViewModel { get; }
@@ -28,9 +29,9 @@ namespace WpfAppTest.ViewModels
         //{
         //    Contract.Invariant(detailsViewModel != null);
         //}
-        public void detailsViewModel_OnParameterChange(Cardholder cardholder)
+        private void OnSelectedCardholderChanged(object sender, EventArgs e)
         {
-            detailsViewModel.Cardholder = cardholder;
+            detailsViewModel.Cardholder = resultSetViewModel.SelectedCardholder;
         }
     }
 }

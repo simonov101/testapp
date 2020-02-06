@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,6 +35,7 @@ namespace WpfAppTest.ViewModels
 
         private void Save(object obj)
         {
+            Contract.Requires<ArgumentNullException>(obj == null);
             inMemoryDatabase.Update(Cardholder);
         }
 
@@ -44,6 +46,7 @@ namespace WpfAppTest.ViewModels
 
         private void Delete(object parameter)
         {
+            Contract.Requires<ArgumentNullException>(parameter != null);
             inMemoryDatabase.DeleteCardHolder(Cardholder);
         }
 
@@ -54,6 +57,7 @@ namespace WpfAppTest.ViewModels
 
         private void Add(object parameter)
         {
+            Contract.Requires<ArgumentNullException>(parameter != null);
             inMemoryDatabase.AddCardHolder(Cardholder);
         }
 
@@ -62,6 +66,7 @@ namespace WpfAppTest.ViewModels
             get { return _cardholder; }
             set
             {
+                Contract.Requires<ArgumentNullException>(value != null);
                 _cardholder = value;
                 NotifyOfPropertyChange(() => Cardholder);
             }

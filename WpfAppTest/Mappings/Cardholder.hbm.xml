@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<hibernate-mapping assembly="WpfAppTest" namespace="WpfAppTest.Models" xmlns="urn:nhibernate-mapping-2.2">
+  <class name="CardholderOrm" table="dBcardholder">
+    <id name="Id" column="cId">
+      <generator class="identity" />
+    </id>  
+    <property name="Lastname">
+      <column name="cLastname" sql-type="varchar" length="40" not-null="true" />
+    </property>
+    <property name="Firstname">
+      <column name="cFirstname" sql-type="varchar" length="40" not-null="true" />
+    </property>
+    <property name="Birthday">
+      <column name="cBirthday" sql-type="TEXT" length="40" not-null="true" />
+    </property>
+    <property name="Company">
+      <column name="cCompany" sql-type="varchar" length="40" not-null="true" />
+    </property>
+  </class>
+</hibernate-mapping>

@@ -10,24 +10,67 @@ using WpfAppTest.Infrastructure;
 using WpfAppTest.Models;
 using WpfAppTest.Services;
 using Caliburn.Micro;
+using System.Diagnostics.Contracts;
 
 namespace WpfAppTest.ViewModels
 {
-    public class ResultSetViewModel : Screen
+    internal sealed class ResultSetViewModel : Screen
     {
-        IDatabase inMemoryDatabase;
-        private ObservableCollection<Cardholder> _cardholders;
-        private Cardholder selectedCardholder;
-        public ResultSetViewModel(IDatabase database)
+        #region Public
+
+        //Constructor
+
+        public ResultSetViewModel()
         {
-            inMemoryDatabase = database;
+            inMemoryDatabase = new InMemoryDatabase();
             SearchCommand = new DelegateCommand(OnSearch, CanSearch);
         }
-        public delegate void ParameterChange(Cardholder parameter);
 
-        public ParameterChange OnParameterChange { get; set; }
+
+        // Events
+
+        public event EventHandler<EventArgs> SelectedCardholderChanged;
+
+
+        // Properties        
 
         public ICommand SearchCommand { get; }
+
+        public Cardholder SelectedCardholder
+        {
+            get
+            {
+                return selectedCardholder;
+            }
+            set
+            {
+                //Contract.Requires<ArgumentException>(!(Cardholders.Contains(SelectedCardholder)));
+                selectedCardholder = value;
+                NotifyOfPropertyChange(() => SelectedCardholder);
+                SelectedCardholderChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        public ObservableCollection<Cardholder> Cardholders
+        {
+            get
+            {
+                return _cardholders;
+            }
+            set
+            {
+                Contract.Requires<ArgumentNullException>(value != null);
+                _cardholders = value;
+                NotifyOfPropertyChange(() => Cardholders);
+            }
+        }
+
+        #endregion
+
+
+        #region Private 
+
+        //Methods
 
         private void OnSearch(object parameter)
         {
@@ -39,31 +82,16 @@ namespace WpfAppTest.ViewModels
         {
             return true;
         }
-        public Cardholder SelectedCardholder
-        {
-            get
-            {
-                return selectedCardholder;                
-            }
-            set
-            {
-                //Contract.Requires<ArgumentException>(Cardholders)
-                selectedCardholder = value;
-                NotifyOfPropertyChange(() => SelectedCardholder);
-                OnParameterChange?.Invoke(SelectedCardholder);
-            }
-        }
-        public ObservableCollection<Cardholder> Cardholders
-        {
-            get
-            {
-                return _cardholders;
-            }
-            set
-            {
-                _cardholders = value;
-                NotifyOfPropertyChange(() => Cardholders);
-            }
-        }
+
+
+        //Fields
+
+        private readonly IDatabase inMemoryDatabase;
+
+        private ObservableCollection<Cardholder> _cardholders;
+
+        private Cardholder selectedCardholder;
+
+        #endregion 
     }
 }

@@ -9,6 +9,16 @@ namespace WpfAppTest.Models
 {
     public class Cardholder
     {
+        public Cardholder()
+        {
+            Contract.Ensures(Equals(Firstname, default(string)));
+            Contract.Ensures(Equals(Lastname, default(string)));
+            Contract.Ensures(Equals(Birthday, default(DateTime)));
+            Contract.Ensures(Equals(Company, default(string)));
+        }
+
+        public virtual int? Id { get; set; }
+
         public string Firstname { get; set; }
 
         public string Lastname { get; set; }
@@ -18,10 +28,7 @@ namespace WpfAppTest.Models
         //[ContractInvariantMethod]
         //private void ValidateInvariants()
         //{
-        //    Contract.Invariant(Firstname == default(string));
-        //    Contract.Invariant(Lastname == default(string));
-        //    Contract.Invariant(Birthday == default(DateTime) );
-        //    Contract.Invariant(Company == default(string));
+        //    Contract.Invariant(Firstname == "Mohamed");
         //}
     }
 }
